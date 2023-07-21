@@ -9,14 +9,14 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'To Do List - Set Structure',
+      title: 'To Do List (1)',
       template: './src/index.html',
     }),
   ],
   output: {
     // filename: 'bundle.js',
-    filename: "[name].js",
-    chunkFilename: "static/js/[name].chunk.js",
+    filename: '[name].js',
+    chunkFilename: 'static/js/[name].chunk.js',
     path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
