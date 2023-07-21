@@ -1,31 +1,15 @@
 import './style.css';
 /* global loadTasksFromLocalStorage */
 
-// eslint-disable-next-line no-unused-vars
 const tasksLocal = [{ index: 1, name: 'Buy groceries at Walmart', completed: false },
   { index: 2, name: 'Pay the internet service', completed: true },
   { index: 3, name: 'Fix the laptop', completed: false },
   { index: 4, name: 'Hire a carpenter', completed: false }];
 
-/* eslint-disable no-use-before-define */
 window.loadTasksFromLocalStorage = () => {
   const text = JSON.stringify(tasksLocal);
   localStorage.setItem('tasks', JSON.stringify(text));
 };
-
-const displayTasks = () => {
-  const taskList = document.getElementById('task-list');
-  if (tasksLocal.length > 0) {
-    tasksLocal.forEach((task) => {
-      /* eslint-disable no-use-before-define */
-      const taskElement = createTaskElement(task);
-      taskList.appendChild(taskElement);
-    });
-  }
-};
-
-// eslint-disable-next-line no-unused-vars
-const taskList = document.getElementById('task-list');
 
 const createTaskElement = (task) => {
   const taskItem = document.createElement('li');
@@ -55,6 +39,16 @@ const createTaskElement = (task) => {
   taskItem.appendChild(deleteIcon);
 
   return taskItem;
+};
+
+const displayTasks = () => {
+  const taskList = document.getElementById('task-list');
+  if (tasksLocal.length > 0) {
+    tasksLocal.forEach((task) => {
+      const taskElement = createTaskElement(task);
+      taskList.appendChild(taskElement);
+    });
+  }
 };
 
 loadTasksFromLocalStorage();
