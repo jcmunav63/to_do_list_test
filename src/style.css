@@ -26,34 +26,38 @@ p {
   font-weight: 600;
 }
 
+.title {
+  color: rgb(146, 146, 146);
+}
+
 .todo-container {
   background-color: #fff;
   max-width: 400px;
   margin: 40px;
   border: 1px solid #ccc;
   box-shadow: 4px 4px #ccc;
+  box-sizing: border-box;
 }
 
 .input-container {
-  width: 100%;
-  margin-bottom: 15px;
+  width: 92%;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid #929292;
+  box-sizing: border-box;
 }
 
 .input-container input {
   border: none;
-  margin-left: 15px;
   padding-right: 15px;
   width: 70%;
   color: rgb(175, 175, 175);
   font-size: 18px;
 }
 
-/* .input-container input:active {
-  border: none;
-} */
-
 #task-input:focus {
-  border: none;
+  outline-color: #929292;
 }
 
 .input-container input::placeholder {
@@ -67,7 +71,6 @@ p {
   border: none;
   cursor: pointer;
   float: right;
-  margin-right: 15px;
   font-size: 20px;
   color: rgb(146, 146, 146);
 }
@@ -77,8 +80,8 @@ p {
   background-color: #fff;
   border-bottom: 1px solid #929292;
   display: flex;
-  padding-top: 3px;
-  padding-bottom: 3px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
 .task-row input[type="checkbox"] {
@@ -87,11 +90,28 @@ p {
   width: 16px;
   float: left;
   font-size: 18px;
+  cursor: pointer;
+}
+
+.task-index {
+  color: #000;
 }
 
 .task-text {
   width: 290px;
   margin-right: 44px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  color: #929292;
+}
+
+.task-text input {
+  /* outline: none; */
+}
+
+.task-text input:focus {
+  background-color:rgb(248, 248, 166);
 }
 
 .task-row .more-icon {
@@ -100,7 +120,7 @@ p {
   margin-right: 15px;
   cursor: pointer;
   font-size: 20px;
-  color: rgb(146, 146, 146);
+  color: rgb(115, 115, 115);
 }
 
 .task-row .more-icon::before {
@@ -109,7 +129,9 @@ p {
 
 .task-row .delete-icon {
   cursor: pointer;
-  display: none;
+  color: rgb(115, 115, 115);
+  /* display: none; */
+  font-size: 22px;
 }
 
 .completed-task {
@@ -122,8 +144,9 @@ p {
   color: #aaa999;
   font-style: italic;
   text-align: center;
-  padding-top: 6px;
-  padding-bottom: 6px;
+  padding-top: 8px;
+  padding-bottom: 8px;
   font-size: 20px;
   width: 100%;
+  cursor: pointer;
 }
