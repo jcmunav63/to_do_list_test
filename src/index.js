@@ -1,14 +1,16 @@
 import './style.css';
 /* global loadTasksFromLocalStorage */
 
-const tasksLocal = [{ index: 1, name: 'Buy groceries at Walmart', completed: false },
-  { index: 2, name: 'Pay the internet service', completed: true },
-  { index: 3, name: 'Fix the laptop', completed: false },
-  { index: 4, name: 'Hire a carpenter', completed: false }];
+// const tasksLocal = [{ index: 1, name: 'Buy groceries at Walmart', completed: false },
+//   { index: 2, name: 'Pay the internet service', completed: true },
+//   { index: 3, name: 'Fix the laptop', completed: false },
+//   { index: 4, name: 'Hire a carpenter', completed: false }];
+
+const tasksLocal = [];
 
 window.loadTasksFromLocalStorage = () => {
   const text = JSON.stringify(tasksLocal);
-  localStorage.setItem('tasks', JSON.stringify(text));
+  localStorage.setItem('tasks', text);
 };
 
 const createTaskElement = (task) => {

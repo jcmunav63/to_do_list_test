@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  color: rgb(112, 112, 112);
+  color: rgb(175, 175, 175);
   margin: 0;
   padding: 0;
   font-size: 18px;
@@ -22,6 +22,8 @@ ul {
 
 p {
   margin-left: 15px;
+  font-size: 20px;
+  font-weight: 600;
 }
 
 .todo-container {
@@ -42,11 +44,21 @@ p {
   margin-left: 15px;
   padding-right: 15px;
   width: 70%;
-  color: rgb(183, 183, 183);
+  color: rgb(175, 175, 175);
+  font-size: 18px;
 }
 
-.input-container input:placeholder-shown {
+/* .input-container input:active {
+  border: none;
+} */
+
+#task-input:focus {
+  border: none;
+}
+
+.input-container input::placeholder {
   font-style: italic;
+  color: rgb(175, 175, 175);
 }
 
 .input-container button {
@@ -56,13 +68,17 @@ p {
   cursor: pointer;
   float: right;
   margin-right: 15px;
+  font-size: 20px;
+  color: rgb(146, 146, 146);
 }
 
 .task-row {
   width: 100%;
   background-color: #fff;
-  border-bottom: 1px #9c9c9c;
+  border-bottom: 1px solid #929292;
   display: flex;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 .task-row input[type="checkbox"] {
@@ -83,6 +99,8 @@ p {
   right: 0;
   margin-right: 15px;
   cursor: pointer;
+  font-size: 20px;
+  color: rgb(146, 146, 146);
 }
 
 .task-row .more-icon::before {
@@ -104,6 +122,8 @@ p {
   color: #aaa999;
   font-style: italic;
   text-align: center;
+  padding-top: 6px;
+  padding-bottom: 6px;
   font-size: 20px;
   width: 100%;
 }
