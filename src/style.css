@@ -133,6 +133,10 @@ p {
   font-size: 22px;
 }
 
+.hide {
+  display: none;
+}
+
 .completed-task {
   text-decoration: line-through;
 }
