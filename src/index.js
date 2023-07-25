@@ -1,7 +1,6 @@
-/* global tasksLocal */
 import './style.css';
 
-import createTaskElement from './adddelupd.js';
+import { createTaskElement, deleteTaskElement } from './adddelupd.js';
 
 let tasksLocal = [];
 
@@ -20,6 +19,7 @@ const displayTaskElement = (task) => {
 
   const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
+  checkbox.classList.add('checkbox');
   checkbox.checked = task.completed;
 
   const taskText = document.createElement('input');
@@ -46,14 +46,6 @@ const displayTaskElement = (task) => {
   return taskItem;
 };
 
-// function createTaskElement(taskName) {
-//   const index = tasksLocal.length + 1;
-//   const complete = false;
-//   const taskString = { index, name: taskName, completed: complete };
-//   tasksLocal.push(taskString);
-//   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
-// }
-
 document.getElementById('add-task-btn').addEventListener('click', () => {
   const taskInput = document.getElementById('task-input');
   const taskName = taskInput.value.trim();
@@ -64,21 +56,43 @@ document.getElementById('add-task-btn').addEventListener('click', () => {
   }
 });
 
+function activateDeleteListener(delBtn, parent) {
+  delBtn.addEventListener('click', () => {
+    deleteTaskElement(tasksLocal, parent, delBtn);
+  });
+};
+
 function activateMoreListeners() {
   const moreBtn = document.querySelectorAll('.more-icon');
   moreBtn.forEach((mb) => {
     mb.addEventListener('click', (e) => {
-      let clickedBtn = e.target;
-      let parent = clickedBtn.parentNode;
-      let delBtn = parent.getElementsByClassName('delete-icon')[0];
-      activateDeleteListener(delBtn);
+      const clickedBtn = e.target;
+      const parent = clickedBtn.parentNode;
+      const delBtn = parent.getElementsByClassName('delete-icon')[0];
+      if (delBtn.classList.contains('hide')) {
+        delBtn.classList.remove('hide');
+        activateDeleteListener(delBtn, parent);
+      } else {
+        delBtn.classList.add('hide');
+      };
     });
   });
 };
 
-function activateDeleteListener(delBtn) {
-  delBtn.classList.remove('hide');
-  // C O M P L E T A R
+function activateCheckboxListeners() {
+  const checkboxInput = document.querySelectorAll('.checkbox');
+  checkboxInput.forEach((cbi) => {
+    cbi.addEventListener('click', (e) => {
+      const clickedCheck = e.target;
+      const parent = clickedCheck.parentNode;
+      const taskInput = parent.getElementsByClassName('task-text')[0];
+      if (clickedCheck.checked) {
+        taskInput.classList.add('completed-task');
+      } else {
+        taskInput.classList.remove('completed-task');
+      };
+    });
+  });
 };
 
 const displayTasks = () => {
@@ -89,7 +103,8 @@ const displayTasks = () => {
       taskList.appendChild(taskElement);
     });
     activateMoreListeners();
-  };
+    activateCheckboxListeners();
+  }
 };
 
 const loadTasksFromLocalStorage = () => {

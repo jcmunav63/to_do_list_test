@@ -6,4 +6,15 @@ function createTaskElement(taskName, tasksLocal) {
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
 }
 
-export default createTaskElement;
+function deleteTaskElement(tasksLocal, parent, delBtn) {
+  // const taskName = parent.getElementsByClassName('task-input')[0].value;
+  const taskIndex = parent.getElementsByClassName('task-index')[0].value;
+  console.log(taskIndex);
+  tasksLocal = tasksLocal.filter((t) => t.index !== taskIndex);
+  localStorage.setItem('tasks', JSON.stringify(tasksLocal));
+
+  delBtn.classList.add('hide');
+  document.location.reload();
+}
+
+export { createTaskElement, deleteTaskElement };
