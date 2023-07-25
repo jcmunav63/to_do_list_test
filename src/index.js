@@ -16,7 +16,7 @@ const displayTaskElement = (task) => {
   const taskItem = document.createElement('li');
   taskItem.classList.add('task-row');
 
-  let taskIndex = document.createElement('span');
+  const taskIndex = document.createElement('span');
   taskIndex.classList.add('task-index');
   taskIndex.value = task.index;
 
@@ -29,7 +29,7 @@ const displayTaskElement = (task) => {
   taskText.value = task.name;
   if (task.completed) {
     taskText.classList.add('completed-task');
-  };
+  }
 
   const moreIcon = document.createElement('span');
   moreIcon.classList.add('more-icon');
@@ -50,7 +50,7 @@ const displayTaskElement = (task) => {
 function createTaskElement(taskName) {
   const index = tasksLocal.length + 1;
   const complete = false;
-  let taskString = { index: index, name: taskName, completed: complete};
+  const taskString = { index, name: taskName, completed: complete };
   tasksLocal.push(taskString);
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
 }
@@ -62,7 +62,7 @@ document.getElementById('add-task-btn').addEventListener('click', () => {
     createTaskElement(taskName);
     document.location.reload();
     taskInput.value = '';
-  };
+  }
 });
 
 const displayTasks = () => {

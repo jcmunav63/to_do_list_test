@@ -87,9 +87,9 @@ p {
 
 .task-row input[type="checkbox"] {
   margin-right: 10px;
-  /* left: 0; */
+  left: 0;
   width: 16px;
-  /* float: left; */
+  float: left;
   font-size: 18px;
   cursor: pointer;
 }
@@ -110,7 +110,7 @@ p {
 }
 
 .task-text:focus {
-  background-color:rgb(255, 255, 213);
+  background-color: rgb(255, 255, 213);
 }
 
 .task-row .more-icon {
@@ -130,7 +130,6 @@ p {
 .task-row .delete-icon {
   cursor: pointer;
   color: rgb(115, 115, 115);
-  /* display: none; */
   font-size: 22px;
 }
 
