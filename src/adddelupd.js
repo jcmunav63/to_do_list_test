@@ -9,7 +9,6 @@ function createTaskElement(taskName, tasksLocal) {
 function deleteTaskElement(tasksLocal, parent, delBtn) {
   // const taskName = parent.getElementsByClassName('task-input')[0].value;
   const taskIndex = parent.getElementsByClassName('task-index')[0].value;
-  console.log(taskIndex);
   tasksLocal = tasksLocal.filter((t) => t.index !== taskIndex);
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
 

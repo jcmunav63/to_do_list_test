@@ -60,7 +60,7 @@ function activateDeleteListener(delBtn, parent) {
   delBtn.addEventListener('click', () => {
     deleteTaskElement(tasksLocal, parent, delBtn);
   });
-};
+}
 
 function activateMoreListeners() {
   const moreBtn = document.querySelectorAll('.more-icon');
@@ -74,10 +74,10 @@ function activateMoreListeners() {
         activateDeleteListener(delBtn, parent);
       } else {
         delBtn.classList.add('hide');
-      };
+      }
     });
   });
-};
+}
 
 function activateCheckboxListeners() {
   const checkboxInput = document.querySelectorAll('.checkbox');
@@ -90,10 +90,10 @@ function activateCheckboxListeners() {
         taskInput.classList.add('completed-task');
       } else {
         taskInput.classList.remove('completed-task');
-      };
+      }
     });
   });
-};
+}
 
 const displayTasks = () => {
   const taskList = document.getElementById('task-list');
