@@ -1,8 +1,8 @@
+/* global tasksLocal */
 import './style.css';
 
 import createTaskElement from './adddelupd.js';
 
-/* global tasksLocal */
 let tasksLocal = [];
 
 window.loadTasksToLocalStorage = () => {
@@ -34,7 +34,7 @@ const displayTaskElement = (task) => {
 
   const deleteIcon = document.createElement('span');
   deleteIcon.classList.add('delete-icon');
-  // deleteIcon.classList.add('hide');
+  deleteIcon.classList.add('hide');
   deleteIcon.innerHTML = '&#128465;';
 
   taskItem.appendChild(taskIndex);
@@ -43,20 +43,7 @@ const displayTaskElement = (task) => {
   taskItem.appendChild(moreIcon);
   taskItem.appendChild(deleteIcon);
 
-  activateMoreListeners();
-  activateDeleteListeners();
-  // activateInputListeners();
-
   return taskItem;
-};
-
-function activateMoreListeners() {
-  let moreBtn = document.querySelectorAll('.more-icon');
-  moreBtn.forEach((mb, taskIndex) => {
-    mb.addEventListener('click', () => {
-      deleteIcon(taskIndex).classList.remove('hide');
-    });
-  });
 };
 
 // function createTaskElement(taskName) {
@@ -77,6 +64,23 @@ document.getElementById('add-task-btn').addEventListener('click', () => {
   }
 });
 
+function activateMoreListeners() {
+  const moreBtn = document.querySelectorAll('.more-icon');
+  moreBtn.forEach((mb) => {
+    mb.addEventListener('click', (e) => {
+      let clickedBtn = e.target;
+      let parent = clickedBtn.parentNode;
+      let delBtn = parent.getElementsByClassName('delete-icon')[0];
+      activateDeleteListener(delBtn);
+    });
+  });
+};
+
+function activateDeleteListener(delBtn) {
+  delBtn.classList.remove('hide');
+  // C O M P L E T A R
+};
+
 const displayTasks = () => {
   const taskList = document.getElementById('task-list');
   if (tasksLocal.length > 0) {
@@ -84,7 +88,8 @@ const displayTasks = () => {
       const taskElement = displayTaskElement(task);
       taskList.appendChild(taskElement);
     });
-  }
+    activateMoreListeners();
+  };
 };
 
 const loadTasksFromLocalStorage = () => {
