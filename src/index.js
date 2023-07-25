@@ -1,11 +1,6 @@
 import './style.css';
 /* global loadTasksFromLocalStorage */
 
-// const tasksLocal = [{ index: 1, name: 'Buy groceries at Walmart', completed: false },
-//   { index: 2, name: 'Pay the internet service', completed: true },
-//   { index: 3, name: 'Fix the laptop', completed: false },
-//   { index: 4, name: 'Hire a carpenter', completed: false }];
-
 let tasksLocal = [];
 
 window.loadTasksToLocalStorage = () => {
@@ -21,9 +16,9 @@ const displayTaskElement = (task) => {
   const taskItem = document.createElement('li');
   taskItem.classList.add('task-row');
 
-  const tIndex = document.createElement('span');
-  tIndex.classList.add('task-index');
-  tIndex.value = task.index;
+  let taskIndex = document.createElement('span');
+  taskIndex.classList.add('task-index');
+  taskIndex.value = task.index;
 
   const checkbox = document.createElement('input');
   checkbox.type = 'checkbox';
@@ -43,7 +38,7 @@ const displayTaskElement = (task) => {
   deleteIcon.classList.add('delete-icon');
   deleteIcon.innerHTML = '&#128465;';
 
-  taskItem.appendChild(tIndex);
+  taskItem.appendChild(taskIndex);
   taskItem.appendChild(checkbox);
   taskItem.appendChild(taskText);
   taskItem.appendChild(moreIcon);
@@ -52,10 +47,10 @@ const displayTaskElement = (task) => {
   return taskItem;
 };
 
-function createTaskElement(name1) {
+function createTaskElement(taskName) {
   const index = tasksLocal.length + 1;
   const complete = false;
-  const taskString = `{ index: ${index}, name: ${name1}, completed: ${complete}}`;
+  let taskString = { index: index, name: taskName, completed: complete};
   tasksLocal.push(taskString);
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
 }
@@ -64,9 +59,6 @@ document.getElementById('add-task-btn').addEventListener('click', () => {
   const taskInput = document.getElementById('task-input');
   const taskName = taskInput.value.trim();
   if (taskName !== '') {
-    // const newTask = TaskManager.addTask(taskName);
-    // const newTaskElement = createTaskElement(newTask);
-    // taskList.appendChild(newTaskElement);
     createTaskElement(taskName);
     document.location.reload();
     taskInput.value = '';
@@ -86,5 +78,4 @@ const displayTasks = () => {
 window.onload = () => {
   loadTasksFromLocalStorage();
   displayTasks();
-  // loadTasksToLocalStorage();
 };
