@@ -13,7 +13,6 @@ function arrangeIndexes(tasksLocal) {
 }
 
 function deleteTaskElement(tasksLocal, parent, delBtn) {
-  // const taskName = parent.getElementsByClassName('task-input')[0].value;
   const taskIndex = parent.getElementsByClassName('task-index')[0].value;
   tasksLocal = tasksLocal.filter((t) => t.index !== taskIndex);
   arrangeIndexes(tasksLocal);
@@ -22,4 +21,9 @@ function deleteTaskElement(tasksLocal, parent, delBtn) {
   document.location.reload();
 }
 
-export { createTaskElement, deleteTaskElement };
+function updateTaskText(value, index, tasksLocal) {
+  tasksLocal[index - 1].name = value;
+  localStorage.setItem('tasks', JSON.stringify(tasksLocal));
+}
+
+export { createTaskElement, deleteTaskElement, updateTaskText };

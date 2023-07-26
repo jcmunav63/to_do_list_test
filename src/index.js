@@ -1,6 +1,6 @@
 import './style.css';
 
-import { createTaskElement, deleteTaskElement } from './adddelupd.js';
+import { createTaskElement, deleteTaskElement, updateTaskText } from './adddelupd.js';
 
 let tasksLocal = [];
 
@@ -95,6 +95,17 @@ function activateCheckboxListeners() {
   });
 }
 
+function activateTaskInputListeners() {
+  const taskInput = document.querySelectorAll('.task-text');
+  taskInput.forEach((ti) => {
+    const parent = ti.parentNode;
+    const taskIndex = parent.getElementsByClassName('task-index')[0].value;
+    ti.addEventListener('change', () => {
+      updateTaskText(ti.value, taskIndex, tasksLocal);
+    });
+  });
+}
+
 const displayTasks = () => {
   const taskList = document.getElementById('task-list');
   if (tasksLocal.length > 0) {
@@ -104,6 +115,7 @@ const displayTasks = () => {
     });
     activateMoreListeners();
     activateCheckboxListeners();
+    activateTaskInputListeners();
   }
 };
 
