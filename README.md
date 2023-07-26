@@ -22,9 +22,9 @@
 - [📝 License](#license)
 
 <!-- PROJECT DESCRIPTION -->
-# 📖 [About the Project - To Do List: Set Structure.] <a name="about-project"></a>
+# 📖 [About the Project - To Do List: Interactive list.] <a name="about-project"></a>
 
-**to_do_list** It's a minimalistic & dynamic To Do List web app! This is a project branch for setting up the structure of the To Do List web app.
+**to_do_list** It's a minimalistic & dynamic To Do List web app! This is a project branch for implementing interactivity in To Do List web app.
 
 
 ## 🛠️ Built With <a name="built-with"></a>
@@ -92,8 +92,7 @@ Clone this repository to your desired folder by running the following commands i
 
   npm install --save-dev eslint@7.x eslint-config-airbnb-base@14.x eslint-plugin-import@2.x babel-eslint@10.x
 
-  install & configure Webpack bundler with npm, lodash, an HTMLWebpack plugin
-  and a Webpack-dev-server
+  install & configure Webpack bundler with npm, lodash, an HTMLWebpack plugin and a Webpack-dev-server
 ```
 
 ### Usage
@@ -117,11 +116,11 @@ To run the project, execute the following command:
 To run tests, run the following command:
 
 ```sh
-  npx hint . --fix
+  npx hint . (--fix option)
   
-  npx stylelint "**/*.{css,scss}" --fix
+  npx stylelint "**/*.{css,scss}" (--fix option)
 
-  npx eslint . --fix
+  npx eslint . (--fix option)
 ```
 
 <!-- AUTHORS -->
@@ -146,10 +145,8 @@ To run tests, run the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 The To Do List website will offer the following features:
-- **Data storage in the browser's local storage**
-- **CRUD task operations (Create, Read, Update, Delete)**
-- **Updating & removing completed tasks**
-- **Reorder data array after deleting tasks**
+- **Update completed status of each task**
+- **Delete all completed tasks**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
