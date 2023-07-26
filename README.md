@@ -42,6 +42,7 @@
 - **Good HTML and CSS practices**
 - **A webpage with the use of linters**
 - **Dynamic interactivity with JavaScript**
+- **Project bundled with Webpack**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -78,10 +79,10 @@ Clone this repository to your desired folder by running the following commands i
 
 ### Install
 
-- Install this project with:
+- Install this project with linters and Webpack bundler:
 
 ```sh
-  cd mv_portfolio2
+  cd to_do_list
 
   npm init -y
 
@@ -90,6 +91,9 @@ Clone this repository to your desired folder by running the following commands i
   npm install --save-dev stylelint@13.x stylelint-scss@3.x stylelint-config-standard@21.x stylelint-csstree-validator@1.x
 
   npm install --save-dev eslint@7.x eslint-config-airbnb-base@14.x eslint-plugin-import@2.x babel-eslint@10.x
+
+  install & configure Webpack bundler with npm, lodash, an HTMLWebpack plugin
+  and a Webpack-dev-server
 ```
 
 ### Usage
@@ -98,6 +102,14 @@ To run the project, execute the following command:
 
 ```sh
   Open the project in Webpack dev server or Open the index.html file, from dist/ folder, on your browser.
+```
+### Build the project with Webpack and run a dev server
+```
+  Run the following commands in the terminal:
+
+  npm run build
+  
+  npm start
 ```
 
 ### Run Linters tests
