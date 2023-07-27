@@ -2,7 +2,7 @@ import './style.css';
 
 import { createTaskElement, deleteTaskElement, updateTaskText } from './adddelupd.js';
 
-import updateTaskStatus from './completed.js';
+import { updateTaskStatus, deleteCompletedTasks } from './completed.js';
 
 let tasksLocal = [];
 
@@ -111,6 +111,15 @@ function activateTaskInputListeners() {
     ti.addEventListener('change', () => {
       updateTaskText(ti.value, taskIndex, tasksLocal);
     });
+  });
+}
+
+function activateDeleteCompletedListener() {
+  const deleteCompleted = document.getElementById('erase-all');
+  deleteCompleted.addEventListener('click', () => {
+    loadTasksFromLocalStorage();
+    deleteCompletedTasks(tasksLocal);
+    // displayTasks();
   });
 }
 

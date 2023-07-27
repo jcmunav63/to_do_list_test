@@ -8,4 +8,8 @@ function updateTaskStatus(status, taskIndex, tasksLocal) {
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
 }
 
+function deleteCompletedTasks(tasksLocal) {
+
+}
+
 export default updateTaskStatus;
