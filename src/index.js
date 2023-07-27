@@ -2,11 +2,11 @@ import './style.css';
 
 import { createTaskElement, deleteTaskElement, updateTaskText } from './adddelupd.js';
 
-import { updateTaskStatus } from './completed.js';
+import updateTaskStatus from './completed.js';
 
 let tasksLocal = [];
 
-window.loadTasksToLocalStorage = () => {
+window.loadTasksToLocalStorage = (tasksLocal) => {
   const text = JSON.stringify(tasksLocal);
   localStorage.setItem('tasks', text);
 };
@@ -88,13 +88,16 @@ function activateCheckboxListeners() {
       const clickedCheck = e.target;
       const parent = clickedCheck.parentNode;
       const taskInput = parent.getElementsByClassName('task-text')[0];
-      const taskIndex = parent.getElementsByClassName('task-index')[0];
+      const taskIndex = parent.getElementsByClassName('task-index')[0].value;
+      let status = false;
       if (clickedCheck.checked) {
         taskInput.classList.add('completed-task');
-        updateTaskStatus('checked', parent, taskIndex);
+        status = true;
+        updateTaskStatus(status, taskIndex, tasksLocal);
       } else {
+        status = false;
         taskInput.classList.remove('completed-task');
-        updateTaskStatus('unchecked', parent, taskIndex);
+        updateTaskStatus(status, taskIndex, tasksLocal);
       }
     });
   });
