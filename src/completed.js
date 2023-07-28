@@ -24,7 +24,6 @@ function deleteCompletedTasks(tasksLocal) {
     }
   });
   tasksLocal = tasksLocal.filter((tr) => tr.completed !== true);
-  // tasksLocal = tasksLocal.filter(!tasksLocal.completed);
   arrangeIndexes(tasksLocal);
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
   return tasksLocal;

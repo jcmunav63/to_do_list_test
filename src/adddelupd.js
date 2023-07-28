@@ -27,7 +27,6 @@ function deleteTaskElement(tasksLocal, delBtn) {
 function updateTaskText(value, index, tasksLocal) {
   tasksLocal[index - 1].name = value;
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
-  return tasksLocal;
 }
 
 export { createTaskElement, deleteTaskElement, updateTaskText };

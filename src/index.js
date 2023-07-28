@@ -61,8 +61,14 @@ function activateMoreListeners() {
           deleteTaskElement(tasksLocal, delBtn);
           loadTasksFromLocalStorage();
           taskList.innerHTML = '';
-          /* eslint-disable no-use-before-define */
-          displayTasks();
+
+          if (tasksLocal.length > 0) {
+            tasksLocal.forEach((task) => {
+              const taskElement = displayTaskElement(task);
+              taskList.appendChild(taskElement);
+            });
+            window.location.reload();
+          }
         });
       } else {
         delBtn.classList.add('hide');
@@ -90,27 +96,9 @@ function activateCheckboxListeners() {
         updateTaskStatus(status, taskIndex, tasksLocal);
       }
       loadTasksFromLocalStorage();
-      const taskList = document.getElementById('task-list');
-      taskList.innerHTML = '';
-      /* eslint-disable no-use-before-define */
-      displayTasks();
     });
   });
 }
-
-const displayTasks = () => {
-  const taskList = document.getElementById('task-list');
-  if (tasksLocal.length > 0) {
-    tasksLocal.forEach((task) => {
-      const taskElement = displayTaskElement(task);
-      taskList.appendChild(taskElement);
-    });
-    activateMoreListeners();
-    activateCheckboxListeners();
-    activateTaskInputListeners();
-    activateCompletedListener();
-  }
-};
 
 function activateTaskInputListeners() {
   const taskInput = document.querySelectorAll('.task-text');
@@ -124,6 +112,31 @@ function activateTaskInputListeners() {
   });
 }
 
+function activateCompletedListener() {
+  const deleteCompleted = document.getElementById('erase-all');
+  const taskList = document.getElementById('task-list');
+  deleteCompleted.addEventListener('click', () => {
+    deleteCompletedTasks(tasksLocal);
+    loadTasksFromLocalStorage();
+    taskList.innerHTML = '';
+
+    if (tasksLocal.length > 0) {
+      tasksLocal.forEach((task) => {
+        const taskElement = displayTaskElement(task);
+        taskList.appendChild(taskElement);
+      });
+      window.location.reload();
+    }
+  });
+}
+
+function activateListeners() {
+  activateMoreListeners();
+  activateCheckboxListeners();
+  activateTaskInputListeners();
+  activateCompletedListener();
+}
+
 document.getElementById('add-task-btn').addEventListener('click', () => {
   const taskInput = document.getElementById('task-input');
   const taskName = taskInput.value.trim();
@@ -132,23 +145,29 @@ document.getElementById('add-task-btn').addEventListener('click', () => {
     createTaskElement(taskName, tasksLocal);
     loadTasksFromLocalStorage();
     taskList.innerHTML = '';
-    displayTasks();
-    taskInput.value = '';
+
+    if (tasksLocal.length > 0) {
+      tasksLocal.forEach((task) => {
+        const taskElement = displayTaskElement(task);
+        taskList.appendChild(taskElement);
+      });
+      activateListeners();
+      taskInput.value = '';
+    }
   }
 });
 
-function activateCompletedListener() {
-  const deleteCompleted = document.getElementById('erase-all');
-  const taskList = document.getElementById('task-list');
-  deleteCompleted.addEventListener('click', () => {
-    deleteCompletedTasks(tasksLocal);
-    loadTasksFromLocalStorage();
-    taskList.innerHTML = '';
-    displayTasks();
-  });
-}
-
 window.onload = () => {
   loadTasksFromLocalStorage();
-  displayTasks();
+  const taskList = document.getElementById('task-list');
+  if (tasksLocal.length > 0) {
+    tasksLocal.forEach((task) => {
+      const taskElement = displayTaskElement(task);
+      taskList.appendChild(taskElement);
+    });
+    activateMoreListeners();
+    activateCheckboxListeners();
+    activateTaskInputListeners();
+    activateCompletedListener();
+  }
 };

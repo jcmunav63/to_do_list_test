@@ -59,15 +59,7 @@ Link to our deployed project (project is not deployed yet).
 
 To get a local copy up and running, follow these steps.
 
-### Prerequisites
-
-In order to run this project you need the following tools:
-- A modern web browser (Chrome, Firefox, Safari, Edge).
-- An IDE (e.g.: Vscode, Sublime Text,...).
-- A terminal (Git Bash).
-- Install and use Webpack project bundler.
-
-### Setup
+### Setup <a name="setup"></a>
 
 Clone this repository to your desired folder by running the following commands in your terminal:
 
@@ -77,7 +69,16 @@ Clone this repository to your desired folder by running the following commands i
   git clone https://github.com/jcmunav63/to_do_list.git
 ```
 
-### Install
+### Prerequisites <a name="prerequisites"></a>
+
+In order to run this project you need the following tools:
+- A modern web browser (Chrome, Firefox, Safari, Edge).
+- An IDE (e.g.: Vscode, Sublime Text,...).
+- A terminal (Git Bash).
+- Install and use Webpack project bundler.
+
+
+### Install <a name="install"></a>
 
 - Install this project with linters and Webpack bundler:
 
@@ -95,7 +96,7 @@ Clone this repository to your desired folder by running the following commands i
   install & configure Webpack bundler with npm, lodash, HTMLWebpack plugin and Webpack-dev-server
 ```
 
-### Usage
+### Usage <a name="usage"></a>
 
 To run the project, execute the following command:
 
@@ -111,7 +112,7 @@ To run the project, execute the following command:
   npm start
 ```
 
-### Run Linters tests
+### Run Linters tests <a name="run-tests"></a>
 
 To run tests, run the following command:
 
@@ -123,21 +124,22 @@ To run tests, run the following command:
   npx eslint . (--fix option)
 ```
 
+### Deployment <a name="triangular_flag_on_post-deployment"></a>
+
+🚀 Project deployment.
+
+https://jcmunav63.github.io/
+
+
 <!-- AUTHORS -->
 
 ## 👥 Authors <a name="authors"></a>
-
 
 👤 **Juan Carlos Muñoz**
 
 - GitHub: [@jcmunav63](https://github.com/jcmunav63)
 - Twitter: [@jcmunav63](https://twitter.com/jcmunav63)
 - LinkedIn: [@juan-carlos-muñoz-navarrete](https://www.linkedin.com/in/juan-carlos-mu%C3%B1oz-navarrete-5a15b6276/)
-
-👤 **Coding Partner**
-- GitHub: [github](https://)
-- Twitter: [twitter](https://)
-- LinkedIn: [linkedin](https://)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -179,6 +181,6 @@ Thanks to my learning partners and the staff at Microverse.
 
 ## 📝 License <a name="license"></a>
 
-This project is [MIT](./LICENSE.md) licensed.
+This project is [MIT](./LICENSE) licensed.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
