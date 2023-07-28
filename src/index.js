@@ -2,11 +2,12 @@ import './style.css';
 
 import { createTaskElement, deleteTaskElement, updateTaskText } from './adddelupd.js';
 
+import { updateTaskStatus, deleteCompletedTasks } from './completed.js';
+
 let tasksLocal = [];
 
-window.loadTasksToLocalStorage = () => {
-  const text = JSON.stringify(tasksLocal);
-  localStorage.setItem('tasks', text);
+const loadTasksFromLocalStorage = () => {
+  tasksLocal = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
 };
 
 const displayTaskElement = (task) => {
@@ -46,22 +47,6 @@ const displayTaskElement = (task) => {
   return taskItem;
 };
 
-document.getElementById('add-task-btn').addEventListener('click', () => {
-  const taskInput = document.getElementById('task-input');
-  const taskName = taskInput.value.trim();
-  if (taskName !== '') {
-    createTaskElement(taskName, tasksLocal);
-    document.location.reload();
-    taskInput.value = '';
-  }
-});
-
-function activateDeleteListener(delBtn, parent) {
-  delBtn.addEventListener('click', () => {
-    deleteTaskElement(tasksLocal, parent, delBtn);
-  });
-}
-
 function activateMoreListeners() {
   const moreBtn = document.querySelectorAll('.more-icon');
   moreBtn.forEach((mb) => {
@@ -69,9 +54,22 @@ function activateMoreListeners() {
       const clickedBtn = e.target;
       const parent = clickedBtn.parentNode;
       const delBtn = parent.getElementsByClassName('delete-icon')[0];
+      const taskList = document.getElementById('task-list');
       if (delBtn.classList.contains('hide')) {
         delBtn.classList.remove('hide');
-        activateDeleteListener(delBtn, parent);
+        delBtn.addEventListener('click', () => {
+          deleteTaskElement(tasksLocal, delBtn);
+          loadTasksFromLocalStorage();
+          taskList.innerHTML = '';
+
+          if (tasksLocal.length > 0) {
+            tasksLocal.forEach((task) => {
+              const taskElement = displayTaskElement(task);
+              taskList.appendChild(taskElement);
+            });
+            window.location.reload();
+          }
+        });
       } else {
         delBtn.classList.add('hide');
       }
@@ -86,11 +84,18 @@ function activateCheckboxListeners() {
       const clickedCheck = e.target;
       const parent = clickedCheck.parentNode;
       const taskInput = parent.getElementsByClassName('task-text')[0];
+      const taskIndex = parent.getElementsByClassName('task-index')[0].value;
+      let status = false;
       if (clickedCheck.checked) {
         taskInput.classList.add('completed-task');
+        status = true;
+        updateTaskStatus(status, taskIndex, tasksLocal);
       } else {
+        status = false;
         taskInput.classList.remove('completed-task');
+        updateTaskStatus(status, taskIndex, tasksLocal);
       }
+      loadTasksFromLocalStorage();
     });
   });
 }
@@ -102,11 +107,58 @@ function activateTaskInputListeners() {
     const taskIndex = parent.getElementsByClassName('task-index')[0].value;
     ti.addEventListener('change', () => {
       updateTaskText(ti.value, taskIndex, tasksLocal);
+      loadTasksFromLocalStorage();
     });
   });
 }
 
-const displayTasks = () => {
+function activateCompletedListener() {
+  const deleteCompleted = document.getElementById('erase-all');
+  const taskList = document.getElementById('task-list');
+  deleteCompleted.addEventListener('click', () => {
+    deleteCompletedTasks(tasksLocal);
+    loadTasksFromLocalStorage();
+    taskList.innerHTML = '';
+
+    if (tasksLocal.length > 0) {
+      tasksLocal.forEach((task) => {
+        const taskElement = displayTaskElement(task);
+        taskList.appendChild(taskElement);
+      });
+      window.location.reload();
+    }
+  });
+}
+
+function activateListeners() {
+  activateMoreListeners();
+  activateCheckboxListeners();
+  activateTaskInputListeners();
+  activateCompletedListener();
+}
+
+document.getElementById('add-task-btn').addEventListener('click', () => {
+  const taskInput = document.getElementById('task-input');
+  const taskName = taskInput.value.trim();
+  const taskList = document.getElementById('task-list');
+  if (taskName !== '') {
+    createTaskElement(taskName, tasksLocal);
+    loadTasksFromLocalStorage();
+    taskList.innerHTML = '';
+
+    if (tasksLocal.length > 0) {
+      tasksLocal.forEach((task) => {
+        const taskElement = displayTaskElement(task);
+        taskList.appendChild(taskElement);
+      });
+      activateListeners();
+      taskInput.value = '';
+    }
+  }
+});
+
+window.onload = () => {
+  loadTasksFromLocalStorage();
   const taskList = document.getElementById('task-list');
   if (tasksLocal.length > 0) {
     tasksLocal.forEach((task) => {
@@ -116,14 +168,6 @@ const displayTasks = () => {
     activateMoreListeners();
     activateCheckboxListeners();
     activateTaskInputListeners();
+    activateCompletedListener();
   }
-};
-
-const loadTasksFromLocalStorage = () => {
-  tasksLocal = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks')) : [];
-};
-
-window.onload = () => {
-  loadTasksFromLocalStorage();
-  displayTasks();
 };

@@ -10,15 +10,18 @@ function arrangeIndexes(tasksLocal) {
   for (let i = 0; i < tasksLocal.length; i += 1) {
     tasksLocal[i].index = (i + 1);
   }
+  return tasksLocal;
 }
 
-function deleteTaskElement(tasksLocal, parent, delBtn) {
+function deleteTaskElement(tasksLocal, delBtn) {
+  const parent = delBtn.parentNode;
   const taskIndex = parent.getElementsByClassName('task-index')[0].value;
-  tasksLocal = tasksLocal.filter((t) => t.index !== taskIndex);
+  tasksLocal = tasksLocal.filter((tr) => tr.index !== taskIndex);
+  const li = delBtn.parentNode;
+  li.remove();
   arrangeIndexes(tasksLocal);
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
-  delBtn.classList.add('hide');
-  document.location.reload();
+  return tasksLocal;
 }
 
 function updateTaskText(value, index, tasksLocal) {
