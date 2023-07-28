@@ -61,6 +61,7 @@ function activateMoreListeners() {
           deleteTaskElement(tasksLocal, delBtn);
           loadTasksFromLocalStorage();
           taskList.innerHTML = '';
+          /* eslint-disable no-use-before-define */
           displayTasks();
         });
       } else {
@@ -91,10 +92,25 @@ function activateCheckboxListeners() {
       loadTasksFromLocalStorage();
       const taskList = document.getElementById('task-list');
       taskList.innerHTML = '';
+      /* eslint-disable no-use-before-define */
       displayTasks();
     });
   });
 }
+
+const displayTasks = () => {
+  const taskList = document.getElementById('task-list');
+  if (tasksLocal.length > 0) {
+    tasksLocal.forEach((task) => {
+      const taskElement = displayTaskElement(task);
+      taskList.appendChild(taskElement);
+    });
+    activateMoreListeners();
+    activateCheckboxListeners();
+    activateTaskInputListeners();
+    activateCompletedListener();
+  }
+};
 
 function activateTaskInputListeners() {
   const taskInput = document.querySelectorAll('.task-text');
@@ -131,20 +147,6 @@ function activateCompletedListener() {
     displayTasks();
   });
 }
-
-const displayTasks = () => {
-  const taskList = document.getElementById('task-list');
-  if (tasksLocal.length > 0) {
-    tasksLocal.forEach((task) => {
-      const taskElement = displayTaskElement(task);
-      taskList.appendChild(taskElement);
-    });
-    activateMoreListeners();
-    activateCheckboxListeners();
-    activateTaskInputListeners();
-    activateCompletedListener();
-  }
-};
 
 window.onload = () => {
   loadTasksFromLocalStorage();

@@ -92,7 +92,7 @@ Clone this repository to your desired folder by running the following commands i
 
   npm install --save-dev eslint@7.x eslint-config-airbnb-base@14.x eslint-plugin-import@2.x babel-eslint@10.x
 
-  install & configure Webpack bundler with npm, lodash, an HTMLWebpack plugin and a Webpack-dev-server
+  install & configure Webpack bundler with npm, lodash, HTMLWebpack plugin and Webpack-dev-server
 ```
 
 ### Usage
@@ -145,8 +145,7 @@ To run tests, run the following command:
 
 ## 🔭 Future Features <a name="future-features"></a>
 The To Do List website will offer the following features:
-- **Update completed status of each task**
-- **Delete all completed tasks**
+- **Deploy this site to Github Pages**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
