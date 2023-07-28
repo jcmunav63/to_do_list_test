@@ -51,7 +51,7 @@
 🚀 Live Demo
 Link to our deployed project (project is not deployed yet).
 
-- https://
+- https://jcmunav63.github.io/to_do_list/dist/
 
 <!-- GETTING STARTED -->
 
@@ -128,7 +128,7 @@ To run tests, run the following command:
 
 🚀 Project deployment.
 
-https://jcmunav63.github.io/
+https://jcmunav63.github.io/to_do_list/dist/
 
 
 <!-- AUTHORS -->
