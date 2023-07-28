@@ -153,3 +153,9 @@ p {
   width: 100%;
   cursor: pointer;
 }
+
+#erase-all:hover {
+  background-color: rgb(227, 237, 255);
+  color: rgb(5, 50, 250);
+  font-weight: 600;
+}

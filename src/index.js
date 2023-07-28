@@ -53,15 +53,21 @@ document.getElementById('add-task-btn').addEventListener('click', () => {
   const taskName = taskInput.value.trim();
   if (taskName !== '') {
     createTaskElement(taskName, tasksLocal);
-    document.location.reload();
+    loadTasksFromLocalStorage();
+    activateMoreListeners();
+    activateCheckboxListeners();
+    activateTaskInputListeners();
     taskInput.value = '';
   }
 });
 
-function activateDeleteListener(delBtn, parent) {
-  delBtn.addEventListener('click', () => {
-    deleteTaskElement(tasksLocal, parent, delBtn);
-  });
+function activateDeleteListeners() {
+  // const delBtn = document.querySelectorAll('.delete-icon');
+  // delBtn.forEach((db) => {
+  //   db.addEventListener('click', () => {
+  //     deleteTaskElement(tasksLocal, db);
+  //   });
+  // });
 }
 
 function activateMoreListeners() {
@@ -73,7 +79,11 @@ function activateMoreListeners() {
       const delBtn = parent.getElementsByClassName('delete-icon')[0];
       if (delBtn.classList.contains('hide')) {
         delBtn.classList.remove('hide');
-        activateDeleteListener(delBtn, parent);
+        // const db = delBtn;
+        delBtn.addEventListener('click', () => {
+          deleteTaskElement(tasksLocal, delBtn);
+          loadTasksFromLocalStorage();
+        });
       } else {
         delBtn.classList.add('hide');
       }
@@ -94,10 +104,12 @@ function activateCheckboxListeners() {
         taskInput.classList.add('completed-task');
         status = true;
         updateTaskStatus(status, taskIndex, tasksLocal);
+        loadTasksFromLocalStorage();
       } else {
         status = false;
         taskInput.classList.remove('completed-task');
         updateTaskStatus(status, taskIndex, tasksLocal);
+        loadTasksFromLocalStorage();
       }
     });
   });
@@ -110,16 +122,16 @@ function activateTaskInputListeners() {
     const taskIndex = parent.getElementsByClassName('task-index')[0].value;
     ti.addEventListener('change', () => {
       updateTaskText(ti.value, taskIndex, tasksLocal);
+      loadTasksFromLocalStorage();
     });
   });
 }
 
-function activateDeleteCompletedListener() {
+function activateCompletedListener() {
   const deleteCompleted = document.getElementById('erase-all');
   deleteCompleted.addEventListener('click', () => {
-    loadTasksFromLocalStorage();
     deleteCompletedTasks(tasksLocal);
-    // displayTasks();
+    loadTasksFromLocalStorage();
   });
 }
 
@@ -131,8 +143,10 @@ const displayTasks = () => {
       taskList.appendChild(taskElement);
     });
     activateMoreListeners();
+    // activateDeleteListeners();
     activateCheckboxListeners();
     activateTaskInputListeners();
+    activateCompletedListener();
   }
 };
 
