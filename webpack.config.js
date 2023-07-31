@@ -9,15 +9,19 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'To Do List (1)',
+      title: 'To Do List',
       template: './src/index.html',
     }),
   ],
   output: {
+    path: path.resolve(__dirname, "dist"),
     // filename: 'bundle.js',
     filename: '[name].js',
-    chunkFilename: 'static/js/[name].chunk.js',
-    path: path.resolve(__dirname, 'dist'),
+    // chunkFilename: (pathData) => {
+    //  return pathData.chunk.name === 'main' ? '[name].js' : '[name]/[name].js';
+    // },
+    // chunkFilename: 'static/js/[name].chunk.js',
+    // path: path.resolve(__dirname, 'dist'),
     clean: true,
   },
   optimization: {
