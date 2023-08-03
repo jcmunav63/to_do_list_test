@@ -30,3 +30,5 @@ function updateTaskText(value, index, tasksLocal) {
 }
 
 export { createTaskElement, deleteTaskElement, updateTaskText };
+
+//module.exports = { createTaskElement };
