@@ -18,13 +18,10 @@ const localStorageMock = (() => {
 // Assign the mock localStorage to the global object
 global.localStorage = localStorageMock;
 
-// Mock the DOM manipulation (li element removal)
-// const removeLiElementMock = jest.fn();
-
 // Mock the parent node with required methods and properties
 const parentNodeMock = {
   getElementsByClassName: () => [{ value: 2 }], // Simulate a task index of 2
-  // removeChild: removeLiElementMock,
+
 };
 
 // AAA testing pattern: Arrange, Act, Assert
@@ -67,7 +64,7 @@ describe('Todo List App', () => {
     });
 
     // Act: call the function being tested with the necessary arguments
-    it('should delete a task from tasksLocal array, remove the li element, and update localStorage', () => {
+    it('should delete a task from tasksLocal array, and update localStorage', () => {
       const delBtnMock = {
         parentNode: parentNodeMock,
       };
@@ -82,9 +79,6 @@ describe('Todo List App', () => {
       // Verify that the tasksLocal array is stored correctly in localStorage
       const storedTasks = JSON.parse(localStorage.getItem('tasks'));
       expect(storedTasks).toEqual(updatedTasksLocal);
-
-      // Verify that the li element removal function is called
-      // expect(removeLiElementMock).toHaveBeenCalledTimes(1);
     });
   });
 });
