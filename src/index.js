@@ -59,6 +59,8 @@ function activateMoreListeners() {
         delBtn.classList.remove('hide');
         delBtn.addEventListener('click', () => {
           deleteTaskElement(tasksLocal, delBtn);
+          const li = delBtn.parentNode;
+          li.remove();
           loadTasksFromLocalStorage();
           taskList.innerHTML = '';
 

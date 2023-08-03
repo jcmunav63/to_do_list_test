@@ -24,7 +24,7 @@
 <!-- PROJECT DESCRIPTION -->
 # 📖 [About the Project - To Do List: Interactive list.] <a name="about-project"></a>
 
-**to_do_list** It's a minimalistic & dynamic To Do List web app! This is a project branch for implementing interactivity in To Do List web app.
+**to_do_list_test** It's a minimalistic & dynamic To Do List web app! This is a project branch for testing pure and mockup functions in To Do List web app.
 
 
 ## 🛠️ Built With <a name="built-with"></a>
@@ -35,6 +35,7 @@
 - CSS
 - JAVASCRIPT
 - WEBPACK
+- Jest package
 
 <!-- Key Features -->
 ### Key Features <a name="key-features"></a>
@@ -123,6 +124,16 @@ To run tests, run the following command:
 
   npx eslint . (--fix option)
 ```
+### Run Jest tests <a name="run-tests"></a>
+
+To run tests, run the following command:
+
+```sh
+  npm install --save-dev jest
+  
+  npm test
+
+```
 
 ### Deployment <a name="triangular_flag_on_post-deployment"></a>
 
@@ -140,6 +151,18 @@ https://jcmunav63.github.io/to_do_list/dist/
 - GitHub: [@jcmunav63](https://github.com/jcmunav63)
 - Twitter: [@jcmunav63](https://twitter.com/jcmunav63)
 - LinkedIn: [@juan-carlos-muñoz-navarrete](https://www.linkedin.com/in/juan-carlos-mu%C3%B1oz-navarrete-5a15b6276/)
+
+👤 **Md.Rafiduzzaman**
+
+- GitHub: [@Rdzaman20000](https://github.com/Rdzaman20000)
+- Twitter: [@99_spectre](https://twitter.com/99_spectre)
+- LinkedIn: [@md-rafiduzzaman-nahin](https://www.linkedin.com/in/md-rafiduzzaman-nahin-7431ab1b4/)
+
+👤 **Fatema Nazari**
+
+- GitHub: [@78fatemanazari](https://github.com/78fatemanazari)
+- Twitter: [@fati_nazari78](https://twitter.com/fati_nazari78?s=31)
+- LinkedIn: [78fatemanazari](https://www.linkedin.com/in/78fatemanazari)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

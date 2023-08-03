@@ -17,8 +17,6 @@ function deleteTaskElement(tasksLocal, delBtn) {
   const parent = delBtn.parentNode;
   const taskIndex = parent.getElementsByClassName('task-index')[0].value;
   tasksLocal = tasksLocal.filter((tr) => tr.index !== taskIndex);
-  const li = delBtn.parentNode;
-  li.remove();
   arrangeIndexes(tasksLocal);
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
   return tasksLocal;
@@ -30,3 +28,5 @@ function updateTaskText(value, index, tasksLocal) {
 }
 
 export { createTaskElement, deleteTaskElement, updateTaskText };
+
+// module.exports = { createTaskElement };
