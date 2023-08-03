@@ -129,9 +129,9 @@ To run tests, run the following command:
 To run tests, run the following command:
 
 ```sh
-  npx install jest --save-dev
+  npm install --save-dev jest
   
-  npx jest todo.test.js
+  npm test
 
 ```
 
