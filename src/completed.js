@@ -4,6 +4,17 @@ function updateTaskStatus(status, taskIndex, tasksLocal) {
       tasksLocal[i].completed = status;
     }
   }
+
+  const taskList = document.getElementById('task-list');
+  const listItem = taskList.childNodes[taskIndex - 1];
+  const checkboxInput = listItem.getElementsByClassName('checkbox')[0];
+  if (status) {
+    checkboxInput.classList.add('completed');
+    checkboxInput.checked = true;
+  } else {
+    checkboxInput.classList.remove('completed');
+    checkboxInput.checked = false;
+  }
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
   return tasksLocal;
 }
@@ -29,4 +40,16 @@ function deleteCompletedTasks(tasksLocal) {
   return tasksLocal;
 }
 
-export { updateTaskStatus, deleteCompletedTasks };
+function updateTaskText(value, index, tasksLocal) {
+  tasksLocal[index - 1].name = value;
+  localStorage.setItem('tasks', JSON.stringify(tasksLocal));
+
+  const taskList = document.getElementById('task-list');
+  const listItem = taskList.childNodes[index - 1];
+  const taskInput = listItem.getElementsByClassName('task-text')[0];
+  taskInput.textContent = value;
+}
+
+export {
+  updateTaskStatus, deleteCompletedTasks, updateTaskText, arrangeIndexes,
+};

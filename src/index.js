@@ -1,8 +1,8 @@
 import './style.css';
 
-import { createTaskElement, deleteTaskElement, updateTaskText } from './adddelupd.js';
+import { createTaskElement, deleteTaskElement } from './adddelupd.js';
 
-import { updateTaskStatus, deleteCompletedTasks } from './completed.js';
+import { updateTaskStatus, deleteCompletedTasks, updateTaskText } from './completed.js';
 
 let tasksLocal = [];
 
