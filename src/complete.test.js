@@ -1,5 +1,7 @@
 import updateTaskStatus from './completed.js';
 
+import updateTaskText from './adddelupd.js';
+
 // Mock localStorage
 let localStorageMock = {};
 global.localStorage = {
@@ -21,6 +23,42 @@ const cleanupDOM = () => {
   global.window = undefined;
   global.document = undefined;
 };
+
+describe('updateTaskText', () => {
+  beforeEach(() => {
+    // Reset the mock localStorage before each test
+    localStorageMock = {};
+    setupDOM();
+  });
+
+  afterEach(() => {
+    cleanupDOM();
+  });
+
+  test('should update the description of a task and DOM', () => {
+    // Arrange
+    const tasks = [
+      { index: 1, name: 'Task 1', completed: false },
+      { index: 2, name: 'Task 2', completed: false },
+      { index: 3, name: 'Task 3', completed: false },
+    ];
+    const indexToUpdate = 2;
+    const newDescription = 'Updated Task2';
+
+    // Act
+    updateTaskText(newDescription, indexToUpdate, tasks);
+
+    // Assert
+    const updatedTasks = JSON.parse(localStorage.getItem('tasks'));
+    expect(updatedTasks).toHaveLength(tasks.length);
+    expect(updatedTasks[indexToUpdate - 1].name).toBe(newDescription);
+
+    // Check if DOM is updated correctly
+    const taskList = document.getElementById('task-list');
+    const taskElement = taskList.children[indexToUpdate - 1];
+    expect(taskElement.querySelector('.task-name').textContent).toBe(newDescription);
+  });
+});
 
 describe('updateTaskStatus', () => {
   beforeEach(() => {
