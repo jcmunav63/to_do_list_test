@@ -119,16 +119,16 @@ function activateCompletedListener() {
   const taskList = document.getElementById('task-list');
   deleteCompleted.addEventListener('click', () => {
     deleteCompletedTasks(tasksLocal);
-    loadTasksFromLocalStorage();
-    taskList.innerHTML = '';
+    // loadTasksFromLocalStorage();
+    // taskList.innerHTML = '';
 
-    if (tasksLocal.length > 0) {
-      tasksLocal.forEach((task) => {
-        const taskElement = displayTaskElement(task);
-        taskList.appendChild(taskElement);
-      });
-      window.location.reload();
-    }
+    // if (tasksLocal.length > 0) {
+    //   tasksLocal.forEach((task) => {
+    //     const taskElement = displayTaskElement(task);
+    //     taskList.appendChild(taskElement);
+    //   });
+    window.location.reload();
+    // }
   });
 }
 
@@ -162,6 +162,7 @@ document.getElementById('add-task-btn').addEventListener('click', () => {
 window.onload = () => {
   loadTasksFromLocalStorage();
   const taskList = document.getElementById('task-list');
+  taskList.innerHTML = '';
   if (tasksLocal.length > 0) {
     tasksLocal.forEach((task) => {
       const taskElement = displayTaskElement(task);

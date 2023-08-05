@@ -27,13 +27,23 @@ function arrangeIndexes(tasksLocal) {
 }
 
 function deleteCompletedTasks(tasksLocal) {
-  const taskCheckbox = document.querySelectorAll('.checkbox');
-  taskCheckbox.forEach((cb) => {
-    if (cb.checked) {
-      const li = cb.parentNode;
-      li.remove();
+  const taskList = document.getElementById('task-list');
+  const listItems = document.querySelectorAll('#task-list li');
+  listItems.forEach((listItem) => {
+    const checkbox = listItem.getElementsByClassName('checkbox')[0];
+    if (checkbox.checked) {
+      taskList.removeChild(listItem);
     }
   });
+  const listItems2 = document.querySelectorAll('#task-list li');
+  let indexCount = 0;
+  listItems2.forEach((listItem) => {
+    const taskIndex = listItem.getElementsByClassName('task-index')[0];
+    taskIndex.textContent = indexCount + 1;
+    taskIndex.classList.add('hide');
+    indexCount += 1;
+  });
+  
   tasksLocal = tasksLocal.filter((tr) => tr.completed !== true);
   arrangeIndexes(tasksLocal);
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));
