@@ -77,7 +77,7 @@ describe('updateTaskStatus', () => {
     cleanupDOM();
   });
 
-  test('Should update the task status and DOM when the checkbox is checked', () => {
+  test('Should update the task status and the DOM when the checkbox is checked', () => {
     // Arrange
     const tasks = [
       { index: 1, name: 'Task 1', completed: false },
@@ -100,7 +100,7 @@ describe('updateTaskStatus', () => {
     expect(taskNameElement.classList.contains('completed')).toBe(true);
   });
 
-  test('Should update the task status and DOM when the checkbox is unchecked', () => {
+  test('Should update the task status and the DOM when the checkbox is unchecked', () => {
     // Arrange
     const tasks = [
       { index: 1, name: 'Task 1', completed: true },
