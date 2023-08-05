@@ -116,19 +116,9 @@ function activateTaskInputListeners() {
 
 function activateCompletedListener() {
   const deleteCompleted = document.getElementById('erase-all');
-  const taskList = document.getElementById('task-list');
   deleteCompleted.addEventListener('click', () => {
     deleteCompletedTasks(tasksLocal);
-    // loadTasksFromLocalStorage();
-    // taskList.innerHTML = '';
-
-    // if (tasksLocal.length > 0) {
-    //   tasksLocal.forEach((task) => {
-    //     const taskElement = displayTaskElement(task);
-    //     taskList.appendChild(taskElement);
-    //   });
     window.location.reload();
-    // }
   });
 }
 

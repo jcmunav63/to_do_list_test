@@ -43,7 +43,7 @@ function deleteCompletedTasks(tasksLocal) {
     taskIndex.classList.add('hide');
     indexCount += 1;
   });
-  
+
   tasksLocal = tasksLocal.filter((tr) => tr.completed !== true);
   arrangeIndexes(tasksLocal);
   localStorage.setItem('tasks', JSON.stringify(tasksLocal));

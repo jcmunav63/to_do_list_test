@@ -16,9 +16,9 @@ const { JSDOM } = jsdom;
 const setupDOM = () => {
   const dom = new JSDOM(
     '<!DOCTYPE html><html><body><ul id="task-list">'
-      + '<li><input type="checkbox" class="checkbox checked"><span class="task-text">Task 1</span></li>'
-      + '<li><input type="checkbox" class="checkbox"><span class="task-text">Task 2</span></li>'
-      + '<li><input type="checkbox" class="checkbox" checked><span class="task-text">Task 3</span></li>'
+      + '<li><span class="task-index"></span><input type="checkbox" class="checkbox" checked><span class="task-text">Task 1</span></li>'
+      + '<li><span class="task-index"></span><input type="checkbox" class="checkbox"><span class="task-text">Task 2</span></li>'
+      + '<li><span class="task-index"></span><input type="checkbox" class="checkbox" checked><span class="task-text">Task 3</span></li>'
       + '</ul></body></html>',
   );
   global.window = dom.window;
